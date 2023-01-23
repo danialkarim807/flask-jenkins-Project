@@ -2,8 +2,8 @@ pipeline {
    agent any
   
    environment {
-       DOCKER_HUB_REPO = "danialkarim807/flask-hello-world"
-       CONTAINER_NAME = "flask-hello-world"
+       DOCKER_HUB_REPO = "danialkarim807/world"
+       CONTAINER_NAME = "webcount"
  
    }
   
@@ -14,7 +14,7 @@ pipeline {
        stage('Build') {
            steps {
                echo 'Building..'
-               sh 'docker image build -t $DOCKER_HUB_REPO:latest .'
+               sh 'docker image build -t $DOCKER_HUB_REPO:dev .'
            }
        }
        stage('Test') {
