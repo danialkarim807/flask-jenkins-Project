@@ -3,6 +3,5 @@ FROM python:3.6
 COPY app.py test.py /app/
 WORKDIR /app
 RUN pip install flask pytest flake8 # This downloads all the dependencies
-EXPOSE 5000
-CMD ["python", "app.py", "0.0.0.0:5000"]
+CMD ["python", "app.py"]
 
