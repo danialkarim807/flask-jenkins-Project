@@ -13,7 +13,7 @@ jobes:
     steps:
       -users: action/checkout@v3
       -name: login to docker hub
-       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+       uses: docker/login-action@v3
        with:
         username: ${{secrets.DOCKER_KEY}}
         # password: ${{secrets.DOCKER_PASS}}
