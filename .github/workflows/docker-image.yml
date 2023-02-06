@@ -3,8 +3,8 @@ name: publish docker image to docker hub
 on:
   push:
     branches: [ "main" ]
-  # pull_request:
-  #   branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobes:
   build:
@@ -13,13 +13,13 @@ jobes:
     steps:
       -users: action/checkout@v3
       -name: login to docker hub
-       uses: docker/login-action@v3
-       with:
-        username: ${{secrets.DOCKER_KEY}}
-        # password: ${{secrets.DOCKER_PASS}}
-
+       env:
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+       run: | 
+       docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       -name: build the docker iamge
-       run: docker build . --file Dockerfile --tag ${{secters.DOCKER_KEY}}/flask-jenkins-project
+       run: docker build . --file Dockerfile --tag danialkarim807/flask-jenkins-project
 
       -name: docker push
        run:   docker push ${{sectets.DOCKER_KEY}}/flask-jenkins-project
