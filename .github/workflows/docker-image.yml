@@ -16,7 +16,7 @@ jobes:
        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
        with:
         username: ${{secrets.DOCKER_KEY}}
-        password: ${{secrets.DOCKER_PASS}}
+        # password: ${{secrets.DOCKER_PASS}}
 
       -name: build the docker iamge
        run: docker build . --file Dockerfile --tag ${{secters.DOCKER_KEY}}/flask-jenkins-project
