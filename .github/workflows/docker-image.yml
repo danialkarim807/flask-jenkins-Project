@@ -1,18 +1,27 @@
-name: Docker Image CI
+name: publish docker image to docker hub
 
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
 
-jobs:
-
+jobes:
   build:
-
-    runs-on: ubuntu-latest
+    run-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      -users: action/checkout@v3
+      -name: login to docker hub
+       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+       with:
+        username: ${{secrets.DOCKER_KEY}}
+        password: ${{secrets.DOCKER_PASS}}
+
+      -name: build the docker iamge
+       run: docker build . --file Dockerfile --tag ${{secters.DOCKER_KEY}}/flask-jenkins-project
+
+      -name: docker push
+       run:   docker push ${{sectets.DOCKER_KEY}}/flask-jenkins-project
+
+ 
